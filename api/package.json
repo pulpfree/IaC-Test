@@ -1,0 +1,8 @@
+{
+  "name": "test-api",
+  "version": "0.0.1",
+  "description": "Minimal api docker image for testing services etc.",
+  "main": "index.js",
+  "author": "Ron Dyck <rond@webbtech.net> (http://webbtech.net/)",
+  "license": "MIT"
+}
