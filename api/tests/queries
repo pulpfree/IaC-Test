@@ -1,0 +1,89 @@
+
+============================== Contact ==============================
+
+mutation createContact($fields: ContactInput) {
+  createContact(input: $fields) {
+    _id
+    email
+    name {
+      first
+      last
+    }
+  }
+}
+{
+  "fields": {
+    "email": "test@webbtech.net",
+    "name": {
+      "prefix": "Mr",
+      "first": "Testa",
+      "last": "Dummy"
+    }
+  }
+}
+
+mutation updateContact($fields: ContactInput) {
+  updateContact(input:$fields) {
+    _id
+    active
+    email
+    name {
+      prefix
+      first
+      last
+    }
+    updatedAt
+  }
+}
+{
+  "fields": {
+    "_id": "59972c44f3b0bc30d6a7def0",
+    "active": true,
+    "email": "test@example.com",
+    "name": {
+      "prefix": "Dr.",
+      "first": "Tester",
+      "last": "Shmester"
+    }
+  }
+}
+
+mutation removeContact($id:ID!) {
+  removeContact(_id:$id) {
+    ok
+    n
+  }
+}
+{
+  "id": "59972c44f3b0bc30d6a7def0"
+}
+
+query fetchById($id:ID!) {
+  fetchByEmail(_id:$id) {
+    _id
+    email
+    name {
+      first
+      last
+    }
+    updatedAt
+  }
+}
+{
+  "id": "59972c44f3b0bc30d6a7def0"
+}
+
+query fetchByEmail($email:String!) {
+  fetchByEmail(email:$email) {
+    _id
+    email
+    name {
+      first
+      last
+    }
+    updatedAt
+  }
+}
+{
+  "email": "test@webbtech.net"
+}
