@@ -39,4 +39,4 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
-src/config/constants.js
+src/config/app.json

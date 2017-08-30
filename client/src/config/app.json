@@ -1,0 +1,29 @@
+{
+  "app": {
+    "localhostIP": "10.0.1.9",
+    "backendUrl": "http://10.0.1.9:3300/graphql",
+    "persistGraphQL": false,
+    "apolloLogging": true,
+    "appID": "599f59bf4939534628c01b9d",
+
+    "backendBuildDir": "build/server",
+    "frontendBuildDir": "build/client",
+    "dllBuildDir": "build/dll",
+    "webpackDevPort": 3000,
+    "ssr": true,
+    "webpackDll": true,
+    "frontendRefreshOnBackendChange": true,
+    "reactHotLoader": false,
+    "debugSQL": false,
+    "backend": true,
+    "web": true,
+    "android": false,
+    "ios": false,
+    "env": {
+      "production": {
+        "apolloLogging": false,
+        "backendUrl": "http://localhost:8080/graphql"
+      }
+    }
+  }
+}

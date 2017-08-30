@@ -70,7 +70,7 @@ type UpdateResult {
 
 type Query {
 
-  fetchContacts: [Contact]
+  fetchContacts(active:Boolean): [Contact]
   fetchById(_id:ID!): Contact
   fetchByEmail(email:String!): Contact
   searchByEmail(active:Boolean, email:String!): [Contact]

@@ -10,7 +10,9 @@
     "graphql": "0.10.5",
     "graphql-tools": "1.2.1",
     "hapi": "16.5.2",
-    "mongoose": "4.11.7"
+    "lodash": "4.17.4",
+    "mongoose": "4.11.7",
+    "request-promise": "4.2.1"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

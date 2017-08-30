@@ -27,6 +27,10 @@ export default class Contact {
       return ContactModel.findOne({email}).exec()
     }
 
+    this.fetchByActive = ({ active }) => {
+      return ContactModel.find({active}).exec()
+    }
+
     this.searchByEmail = fields => {
       const { active, email } = fields
       const q = {

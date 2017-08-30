@@ -1,0 +1,22 @@
+{
+  "app": {
+    "apolloLogging": true,
+    "appHost": "0.0.0.0",
+    "appID": "599f59bf4939534628c01b9d",
+    "appPort": 3300,
+    "appType": "server",
+    "DBOptions": {
+      "useMongoClient": true
+    },
+    "DBURI": "mongodb://10.0.1.9:27017/iat-test",
+    "localhostIP": "10.0.1.9",
+    "loggerAddress": "http://localhost:3021",
+    "persistGraphQL": true,
+    "remoteLogging": true,
+    "env": {
+      "production": {
+        "apolloLogging": false
+      }
+    }
+  }
+}

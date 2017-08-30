@@ -9,7 +9,13 @@ export const fetchByEmail =  async (_, { email }, ctx) => {
   return await contact.fetchByEmail({email})
 }
 
-export const searchByEmail =  async (_, { active = true, email }, ctx) => {
+export const fetchContacts =  async (_, { active = true }, ctx) => {
+  const contact = new ctx.constructor.Contact()
+  return await contact.fetchByActive({active})
+}
+
+export const searchByEmail =  async (_, { active, email }, ctx) => {
   const contact = new ctx.constructor.Contact()
   return await contact.searchByEmail({active, email})
 }
+
