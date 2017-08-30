@@ -14,6 +14,7 @@ import queryMap from './extracted_queries.json'
 import settings from './config/settings'
 import log from './log'
 
+import executableSchema from './api/schema'
 
 // Initiate Mongoose
 Mongoose.Promise = global.Promise
@@ -37,7 +38,7 @@ server.connection({
   routes: {cors: true},
 })
 
-const executableSchema = makeExecutableSchema({
+/*const executableSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
   resolverValidationOptions: {
@@ -47,7 +48,7 @@ const executableSchema = makeExecutableSchema({
   },
   // allowUndefinedInResolve: true,
   printErrors: true,
-})
+})*/
 
 server.ext('onPreHandler', (req, reply) => {
   if (req.url.path.indexOf('/graphql') >= 0 && req.payload.id) {
