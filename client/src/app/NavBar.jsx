@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { withStyles } from 'material-ui/styles'
 import modules from '../modules'
 
@@ -9,7 +10,7 @@ const styles = theme => ({
   flex: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
 })
 

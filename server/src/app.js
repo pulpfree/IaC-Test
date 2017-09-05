@@ -1,20 +1,21 @@
 import hapi from 'hapi'
 import { graphiqlHapi, graphqlHapi } from 'apollo-server-hapi'
-import { makeExecutableSchema } from 'graphql-tools'
 import Mongoose from 'mongoose'
 
-import connectors from './connectors'
-// import constants from './config/constants'
-import resolvers from './resolvers'
-import { typeDefs } from './schema'
-
 import { invert } from 'lodash'
-import queryMap from './extracted_queries.json'
-
-import settings from './config/settings'
-import log from './log'
 
 import executableSchema from './api/schema'
+import log from './log'
+import modules from './modules'
+import queryMap from './extracted_queries.json'
+import settings from './config/settings'
+
+
+/*class Foo {
+  constructor() { this.bar() }
+  bar() { throw new Error('this is a demo') }
+}
+// new Foo()*/
 
 // Initiate Mongoose
 Mongoose.Promise = global.Promise
@@ -29,26 +30,14 @@ Mongoose.connect(settings.DBURI, settings.DBOptions)
 
 const db = Mongoose.connection
 db.on('error', console.error.bind(console, 'Connection error:')) // eslint-disable-line no-console
-db.once('open', () => console.log('mongodb is connected')) // eslint-disable-line no-console
+db.once('open', () => console.log('mongodb is connected...')) // eslint-disable-line no-console
 
 const server = new hapi.Server()
 server.connection({
   host: settings.appHost,
   port: settings.appPort,
-  routes: {cors: true},
+  routes: {'cors': true},
 })
-
-/*const executableSchema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-  resolverValidationOptions: {
-    // requireResolversForAllFields: false,
-    // requireResolversForArgs: false,
-    requireResolversForNonScalar: false,
-  },
-  // allowUndefinedInResolve: true,
-  printErrors: true,
-})*/
 
 server.ext('onPreHandler', (req, reply) => {
   if (req.url.path.indexOf('/graphql') >= 0 && req.payload.id) {
@@ -59,6 +48,11 @@ server.ext('onPreHandler', (req, reply) => {
   return reply.continue()
 })
 
+server.ext('onPreResponse', function(req, reply) {
+  req.response.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+  return reply.continue()
+})
+
 server.register({
   register: graphqlHapi,
   options: {
@@ -66,9 +60,8 @@ server.register({
     graphqlOptions: () => {
       return {
         schema: executableSchema,
-        context: { constructor: connectors },
+        context: modules.createContext(),
         formatError(error) {
-          // console.error('error stack:', error.stack) // eslint-disable-line no-console
           log.error(error.stack)
           return error
         },
@@ -92,4 +85,13 @@ server.register({
     server.log('info', `Server running at ${server.info.uri}`)
     log.info(`Server running at ${server.info.uri}`)
   })
+})
+
+process.on('uncaughtException', (ex) => {
+  log.error(ex)
+  process.exit(1)
+})
+
+process.on('unhandledRejection', reason => {
+  log.error(reason)
 })

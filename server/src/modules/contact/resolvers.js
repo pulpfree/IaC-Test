@@ -1,7 +1,7 @@
 
 export default pubsub => ({
   Query: {
-    fetchByActive(_, { active }, ctx) {
+    fetchContacts(_, { active }, ctx) {
       return ctx.Contact.fetchByActive(true)
     },
   },

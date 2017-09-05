@@ -1,4 +1,4 @@
-import schema from './schema.graphqls'
+import schema from './schema.graphql'
 import createResolvers from './resolvers'
 
 import Contact from './context'
@@ -8,6 +8,7 @@ export default new Feature({schema, createResolversFunc: createResolvers,
   createContextFunc: () => {
 
     const contact = new Contact()
+    // console.log('contact in createContextFunc:', contact)
     return {
       Contact: contact,
     }

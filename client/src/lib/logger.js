@@ -26,6 +26,7 @@ class Logger {
       {'Content-Type': 'application/json; charset=UTF-8'},
     ]
     this.appID      =  options.appID
+    this.appType    =  options.appType
     this.url        =  options.url
     this.level      =  options.level || Logger.ERROR
     this.batchSize  =  options.batchSize || 10
@@ -36,6 +37,7 @@ class Logger {
     const req = new Request(this.url, {
       body:     JSON.stringify({
         appID:    this.appID,
+        appType:  this.appType,
         context:  navigator.userAgent, // eslint-disable-line no-undef
         messages,
         sentAt:   new Date(),
@@ -54,14 +56,13 @@ class Logger {
   }
 
   log(level, message) {
-    // console.log('typeof:', typeof message)
-    // console.log('message:', message)
     const msg = JSON.stringify(message)
-    // console.log('msg:', msg)
+    const location = JSON.stringify(window.location)
     if (level <= this.level) {
       this.messages.push({
         level,
         message: msg,
+        location,
       })
       if (this.messages.length >= this.batchSize) {
         this.send(this.messages.splice(0, this.batchSize))

@@ -1,0 +1,1 @@
+{"query getContacts($active: Boolean) {\n  fetchContacts(active: $active) {\n    _id\n    email\n    name {\n      first\n      last\n      prefix\n      __typename\n    }\n    __typename\n  }\n}\n":1}

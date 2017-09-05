@@ -1,0 +1,5 @@
+fragment ContactInfo on Contact {
+  id
+  name
+  email
+}

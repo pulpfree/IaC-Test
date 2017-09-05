@@ -19,7 +19,7 @@ export default class {
     return merge({}, ...this.createContextFunc.map(createContext => createContext()))
   }
 
-  createResolvers(pubsub)  {
-    return merge({}, ...this.createResolversFunc.map(createResolvers => createResolvers(pubsub)))
+  createResolvers()  {
+    return merge({}, ...this.createResolversFunc.map(createResolvers => createResolvers()))
   }
 }

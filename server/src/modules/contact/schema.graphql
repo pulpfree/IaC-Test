@@ -50,6 +50,17 @@ input ContactSearchInput {
   email: String!
 }
 
+type RemoveResult {
+  ok: Int
+  n: Int
+}
+
+type UpdateResult {
+  _id: ID
+  ok: Int
+  n: Int
+  nModified: Int
+}
 
 # Queries ===============================
 

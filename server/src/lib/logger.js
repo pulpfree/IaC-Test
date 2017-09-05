@@ -49,7 +49,7 @@ class Logger {
     }
     request(options)
       .catch(function (err) {
-        console.error('err:', err) // eslint-disable-line no-console
+        console.error('ERROR in Logger:', err.message) // eslint-disable-line no-console
       })
   }
 
