@@ -1,0 +1,80 @@
+# Contact
+type Contact {
+  _id: ID
+  active: Boolean
+  email: String
+  name: ContactName
+  phones: [ContactPhone]
+  updatedAt: String
+  createdAt: String
+}
+
+# ContactName
+type ContactName {
+  first: String
+  last: String
+  prefix: String
+}
+
+# ContactPhone
+type ContactPhone {
+  id: String
+  countryCode: String
+  extension: Int
+  number: String
+}
+
+input ContactInput {
+  _id: ID
+  active: Boolean
+  email: String
+  name: ContactNameInput
+  phones: [ContactPhoneInput]
+}
+
+input ContactNameInput {
+  first: String
+  last: String
+  prefix: String
+}
+
+input ContactPhoneInput {
+  id: String!
+  countryCode: String
+  extension: Int
+  number: String!
+}
+
+input ContactSearchInput {
+  active: Boolean
+  email: String!
+}
+
+type RemoveResult {
+  ok: Int
+  n: Int
+}
+
+type UpdateResult {
+  _id: ID
+  ok: Int
+  n: Int
+  nModified: Int
+}
+
+# Queries ===============================
+
+extend type Query {
+  fetchContacts(active:Boolean): [Contact]
+  fetchById(_id:ID!): Contact
+  fetchByEmail(email:String!): Contact
+  searchByEmail(active:Boolean, email:String!): [Contact]
+}
+
+# Mutations =============================
+
+extend type Mutation {
+  createContact(input:ContactInput): Contact
+  updateContact(input:ContactInput): Contact
+  removeContact(_id:ID!): RemoveResult
+}

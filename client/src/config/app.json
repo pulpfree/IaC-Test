@@ -2,9 +2,11 @@
   "app": {
     "localhostIP": "10.0.1.9",
     "backendUrl": "http://10.0.1.9:3300/graphql",
-    "persistGraphQL": false,
+    "persistGraphQL": true,
     "apolloLogging": true,
     "appID": "599f59bf4939534628c01b9d",
+    "appType": "client",
+    "loggerAddress": "http://localhost:3021",
 
     "backendBuildDir": "build/server",
     "frontendBuildDir": "build/client",

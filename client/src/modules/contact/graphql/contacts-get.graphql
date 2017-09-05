@@ -1,0 +1,12 @@
+
+query getContacts($active: Boolean) {
+  fetchContacts(active: $active) {
+    _id
+    email
+    name {
+      first
+      last
+      prefix
+    }
+  }
+}

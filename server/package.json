@@ -8,6 +8,7 @@
   "dependencies": {
     "apollo-server-hapi": "1.1.0",
     "graphql": "0.10.5",
+    "graphql-tag": "2.4.2",
     "graphql-tools": "1.2.1",
     "hapi": "16.5.2",
     "lodash": "4.17.4",
@@ -16,17 +17,25 @@
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-polyfill": "6.26.0",
     "babel-preset-es2015": "6.24.1",
-    "babel-preset-stage-2": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "concurrently": "3.5.0",
+    "file-loader": "0.11.2",
+    "json-loader": "0.5.7",
     "mocha": "3.5.0",
     "nodeman": "1.1.2",
     "tap-spec": "4.1.1",
-    "tape": "4.8.0"
+    "tape": "4.8.0",
+    "uglifyjs-webpack-plugin": "0.4.6",
+    "webpack": "3.5.5",
+    "webpack-node-externals": "1.6.0"
   },
   "scripts": {
+    "start": "concurrently --raw \"NODE_ENV=development webpack --watch\" \"NODE_ENV=development nodemon ./build/server --exec babel-node\"",
     "test": "NODE_ENV=test tape -r babel-register tests/**/*.spec.js | tap-spec",
-    "build": "babel src -d dist",
-    "serve": "NODE_ENV=development node dist/index.js",
-    "start": "NODE_ENV=development nodemon src/index.js --exec babel-node"
+    "build": "NODE_ENV=production webpack"
   }
 }

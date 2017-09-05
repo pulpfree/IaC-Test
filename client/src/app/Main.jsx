@@ -1,6 +1,6 @@
 import React from 'react'
-import { createBatchingNetworkInterface } from 'apollo-client'
-// import { addPersistedQueries } from 'persistgraphql'
+// import { createBatchingNetworkInterface } from 'apollo-client'
+import { PersistedQueryNetworkInterface } from 'persistgraphql'
 import { addApolloLogging } from 'apollo-logger'
 import { ApolloProvider } from 'react-apollo'
 import createHistory from 'history/createBrowserHistory'
@@ -8,25 +8,21 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 
 import createApolloClient from './apollo-client'
 import createReduxStore from './redux-store'
-
-import settings from '../config/settings'
+// import log from './log'
+import queryMap from '../extracted_queries.json'
 import Routes from './routes'
-import log from './log'
+import settings from '../config/settings'
 
 import 'typeface-roboto'
-// import '../styles/index.sass'
+import '../styles/index.css'
 
-// log.debug('Updating front-end debug')
-log.info('Updating front-end info')
-// log.error('Updating front-end error')
-// log.error('Updating front-end error 2')
-// log.error('Updating front-end error 3')
-// log.warn('Updating front-end warn')
-// log.warn('Updating front-end warn 2')
-// log.warn('Updating front-end warn 3')
 // console.log('window.location:', window.location)
 
-let networkInterface = createBatchingNetworkInterface({
+// console.log('queryMap:', queryMap)
+
+// NOTE: batching doesn't work with the current setup of persistgraphql.
+//  Likely need to install the webpack plugin first: https://github.com/sysgears/persistgraphql-webpack-plugin
+/*let networkInterface = createBatchingNetworkInterface({
   opts: {
     credentials: 'same-origin',
   },
@@ -35,8 +31,16 @@ let networkInterface = createBatchingNetworkInterface({
 })
 
 if (settings.persistGraphQL) {
-  // networkInterface = addPersistedQueries(networkInterface, queryMap);
-}
+  networkInterface = addPersistedQueries(networkInterface, queryMap)
+}*/
+
+let networkInterface = new PersistedQueryNetworkInterface({
+  queryMap,
+  uri: settings.backendUrl,
+  opts: {
+    credentials: 'same-origin',
+  },
+})
 
 if (settings.apolloLogging) {
   networkInterface = addApolloLogging(networkInterface)
@@ -45,6 +49,9 @@ if (settings.apolloLogging) {
 const client = createApolloClient(networkInterface)
 
 let initialState = {}
+if (window.__APOLLO_STATE__) {
+  initialState = window.__APOLLO_STATE__
+}
 
 const history = createHistory()
 const store = createReduxStore(initialState, client, routerMiddleware(history))

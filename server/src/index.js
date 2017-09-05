@@ -1,6 +1,7 @@
 require('babel-polyfill')
 require('./app')
 
+// foo()
 // const log = require('./log')
 // console.log('log:', log)
 process.on('uncaughtException', (ex) => {

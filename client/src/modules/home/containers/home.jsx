@@ -12,8 +12,6 @@ import HomeShow from '../components/home-show'
 import log from '../../../app/log'
 
 
-
-
 const styles = {
   root: {
     margin: 0,
@@ -37,7 +35,7 @@ class Home extends React.Component { // eslint-disable-line react/no-multi-comp
 
   render() {
     // console.log('window.location:', window.location)
-    log.info(window.location)
+    log.info(this.props)
     return (
       <div className={this.props.classes.root}>
       <PageLayout>
