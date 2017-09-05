@@ -1,13 +1,10 @@
-/* eslint-disable */
-var PersistGraphQLPlugin = require('persistgraphql-webpack-plugin');
+// const PersistGraphQLPlugin = require('persistgraphql-webpack-plugin')
 
 module.exports = function override(config, env) {
-  var path = require('path')
+  const path = require('path')
 
   // workaround for https://github.com/apollographql/apollo-client/issues/1237
   config.resolve.modules.push(path.resolve(__dirname, 'node_modules', 'apollo-client'))
-
-  console.log('config:', config)
 
   // add graphql loader
   config.module.rules[1].oneOf.unshift({
@@ -17,7 +14,7 @@ module.exports = function override(config, env) {
     use: [
       'graphql-tag/loader',
       // 'persistgraphql-webpack-plugin/graphql-loader'
-    ]
+    ],
   })
 
   /*plugins: [

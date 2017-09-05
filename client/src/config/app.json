@@ -24,7 +24,7 @@
     "env": {
       "production": {
         "apolloLogging": false,
-        "backendUrl": "http://localhost:8080/graphql"
+        "backendUrl": "http://10.0.1.9:3300/graphql"
       }
     }
   }

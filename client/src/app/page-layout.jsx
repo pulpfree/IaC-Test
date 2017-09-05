@@ -10,7 +10,7 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 
-import NavBar from './NavBar'
+import NavBar from './nav-bar'
 
 const footerHeight = '40px'
 
@@ -53,7 +53,6 @@ const Page = ({classes, children, navBar}) => {
             Pulpfree Web App
           </Typography>
           {navBar !== false && <NavBar classes={this.classes} />}
-          <Button color="contrast">Login</Button>
         </Toolbar>
       </AppBar>
       <div id="content">

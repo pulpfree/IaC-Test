@@ -16,10 +16,6 @@ import settings from '../config/settings'
 import 'typeface-roboto'
 import '../styles/index.css'
 
-// console.log('window.location:', window.location)
-
-// console.log('queryMap:', queryMap)
-
 // NOTE: batching doesn't work with the current setup of persistgraphql.
 //  Likely need to install the webpack plugin first: https://github.com/sysgears/persistgraphql-webpack-plugin
 /*let networkInterface = createBatchingNetworkInterface({

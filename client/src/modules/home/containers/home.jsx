@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Helmet from 'react-helmet'
 
-import PageLayout from '../../../app/PageLayout'
+import PageLayout from '../../../app/page-layout'
 
 import withStyles from 'material-ui/styles/withStyles'
 import withRoot from '../../../app/withRoot'

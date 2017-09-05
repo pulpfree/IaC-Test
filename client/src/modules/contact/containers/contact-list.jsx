@@ -13,7 +13,7 @@ import Typography from 'material-ui/Typography'
 import withStyles from 'material-ui/styles/withStyles'
 
 import ContactsTable from '../components/contacts-table'
-import PageLayout from '../../../app/PageLayout'
+import PageLayout from '../../../app/page-layout'
 import Wait from '../../common/components/waiting'
 import withRoot from '../../../app/withRoot'
 

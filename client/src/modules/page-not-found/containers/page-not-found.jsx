@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
 // import { Button } from 'reactstrap'
-import PageLayout from '../../../app/PageLayout'
+import PageLayout from '../../../app/page-layout'
 
 const pageNotFound = () => (
   <PageLayout>
