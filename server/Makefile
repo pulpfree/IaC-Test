@@ -4,12 +4,12 @@ PORT_MAP=3300:3300
 
 default: deploy
 
-deploy: buildapp build push
+deploy: buildapp buildi push
 
 # Build and run locally
-buildl: buildapp build rund
+buildl: buildapp buildi rund
 
-build:
+buildi:
 	docker build --rm -t pulpfree/$(NAME):$(VERSION) .
 
 # Run in local development mode
