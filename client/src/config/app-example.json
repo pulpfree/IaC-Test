@@ -1,0 +1,18 @@
+{
+  "app": {
+    "backendUrl": "<serveraddress>:<serverport>/graphql",
+    "persistGraphQL": true,
+    "apolloLogging": true,
+    "appID": "abc123",
+    "appType": "client",
+    "loggerAddress": "http://l<serveraddress>:<serverport>",
+    "backendBuildDir": "build/server",
+    "frontendBuildDir": "build/client",
+    "env": {
+      "production": {
+        "apolloLogging": false,
+        "backendUrl": "http://<serveraddress>:<serverport>/graphql"
+      }
+    }
+  }
+}
